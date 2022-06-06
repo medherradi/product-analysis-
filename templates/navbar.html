@@ -1,0 +1,67 @@
+{% url 'analysis:home-view' as path_to_home %}
+{% url 'analysis:main-view' as path_to_dashboard %}
+{% url 'analysis:add-view' as path_to_add_purchase %}
+{% url 'csvfile:upload-csv' as path_to_upload_csv %}
+{% url 'customers:customer_insight' as path_to_customer %}
+{% url 'analysis:sales_view' as path_to_performance %}
+{% url 'login' as path_to_login %}
+{% url 'logout' as path_to_logout %}
+
+{% load static %}
+
+<nav class="navbar is-spaced is-dark mb-4" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand ml-6">
+        <a class="navbar-item-img-max-height img-responsive" href={{path_to_home}}>
+          <img src="{% static 'faviconweb.png' %}"  width="80" height="80">
+        </a>
+    
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu ml-2">
+        <div class="navbar-start">
+          
+          <a class="navbar-item" href={{path_to_home}}>
+            <strong>Home</strong>
+          </a>
+
+          <a class="navbar-item" href={{path_to_dashboard}}>
+            <strong>Dashboard</strong>
+          </a>
+
+          <a class="navbar-item" href={{path_to_add_purchase}}>
+            <strong>Purchase</strong>
+          </a>
+
+          <a class="navbar-item" href={{path_to_upload_csv}}>
+            <strong>Upload</strong>
+          </a>
+
+          <a class="navbar-item" href={{path_to_customer}}>
+            <strong>Customer</strong>
+          </a>
+
+          <a class="navbar-item" href={{path_to_performance}}>
+            <strong>Performance</strong>
+          </a>
+        </div>
+      
+      
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons mr-6">
+              <a class="button is-link" href={{path_to_login}}>
+                <strong>Log in</strong>
+              </a>
+              <a class="button is-light" href={{path_to_logout}}>
+                <strong>Sign up</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+</nav>

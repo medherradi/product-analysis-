@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %}
+   <script src="{% static 'analysis/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block content %}
+<div class="container has-background-white">
+  {% if error_message %}
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="notification is-warning has-text-centered">
+        <button class="delete"></button>
+        <strong>{{error_message}}</strong>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+ 
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <label><strong>Choose a chart type:</strong></label>
+        <div class="select is-fullwidth mt-3">
+          <select name="choices">
+            <option value="------">---------</option>
+            <option value="bar plot">Bar plot</option>
+            <option value="line plot">Line plot</option>
+            <option value="pie plot">Pie plot</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="columns"> 
+      <div class="column">
+        <label><strong>Date from:</strong></label>
+        <input class="input is-link mt-3" type="date" name="date-from">
+      </div>
+      <div class="column">
+        <label><strong>Date to:</strong></label>
+        <input class="input is-link mt-3" type="date" name="date-to">
+      </div>
+    </div>
+    <div class ="control has-text-centered">
+        <button type="submit" class="button is-focused has-background-info-dark" style="width:250px;height:45px;">
+          <span class="icon is-small">
+            <i class="fas fa-check"></i>
+          </span>
+          <span>Select</span>
+        </button> 
+    </div>
+  </form>
+  <div class ="control has-text-centered mt-3 mb-3">
+    <a href={% url 'analysis:add-view' %}><button type="submit" class="button is-focused has-background-primary-dark" style="width:250px;height:45px;">
+      <span class="icon is-small">
+        <i class="fas fa-check"></i>
+      </span>
+      <span>Add purchase</span>
+    </button></a>
+  </div>
+  <div class="container">
+  {% if request.POST %}
+    {% if graph_plot %}
+      {% autoescape off %}
+        {{graph_plot | safe}}
+      {% endautoescape %}
+    {% endif %}
+  {% endif %}
+  </div>
+</div>
+{% endblock content %}

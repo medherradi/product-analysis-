@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block scripts %}
+   <script src="{% static 'analysis/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+Salesman performance
+{% endblock title %}
+
+
+{% block content %}
+
+<div class='has-text-centered mb-3'>
+      <strong>The salesman performance</strong>
+</div>
+<div class='container'>      
+      {% if graph_plot %}
+            {% autoescape off %}
+            {{graph_plot | safe}}
+            {% endautoescape %}
+      {% endif %}
+</div>
+
+{% endblock content %}

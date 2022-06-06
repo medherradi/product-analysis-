@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %}
+   <script src="{% static 'customers/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+Customer 
+{% endblock title %}
+
+
+{% block content %}
+<div class="columns">
+      {% if success_message %}
+        <div class="column is-half is-offset-one-quarter">
+          <div class="notification is-primary is-light has-text-centered">
+            <button class="delete"></button>
+            <strong>{{success_message}}</strong>
+          </div>
+        </div>
+      {% endif %}
+      {% if error_message %}
+        <div class="column is-half is-offset-one-quarter">
+          <div class="notification is-primary is-light has-text-centered">
+            <button class="delete"></button>
+            <strong>{{error_message}}</strong>
+          </div>
+        </div>
+      {% endif %}
+</div>
+<div class="container mb-5 has-background-white">
+    {% if graph_plot %}
+      <div class='has-text-centered'><strong>The correlation 'employment' and 'budget': {{corr}}</strong></div>
+      {% autoescape off %}
+        {{graph_plot | safe}}
+      {% endautoescape %}
+    {% endif %}
+</div>
+{% endblock content %}

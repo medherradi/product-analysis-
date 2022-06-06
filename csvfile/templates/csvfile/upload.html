@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block scripts %}
+   <script src="{% static 'csvfile/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+csv
+{% endblock title %}
+
+{% block content %}
+<div class="container mb-5 has-background-white">
+<div class="columns">
+  {% if success_message %}
+    <div class="column is-half is-offset-one-quarter">
+      <div class="notification is-primary is-light has-text-centered">
+        <button class="delete"></button>
+        <strong>{{success_message}}</strong>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<div class="columns is-mobile is-centered">
+    <div class="column is-half has-text-centered">
+            <form action='' method='POST' enctype='multipart/form-data'>
+                  {% csrf_token %}
+                  <div class="field">
+                    {{ form.non_field_errors }}
+                    <label class="label mb-3" for="{{ form.file_name.id_for_label }}">Upload a csv file</label>
+                    <div class="file has-name is-medium is-boxed is-centered">
+                        {{ form.file_name.errors }}
+                        <label class="file-label">
+                            {{ form.file_name }}
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose a file…
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                  </div>
+                  <div class="control mt-4">
+                        <button type="submit" class="button has-background-info-dark"><span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                        </span>
+                        <span>Upload</span></button>
+                  </div>
+            </form>
+        </div>  
+   </div>
+  </div>
+
+{% endblock content %}
