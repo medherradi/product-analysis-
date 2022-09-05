@@ -1,4 +1,4 @@
-# Product Analysis Product 
+# Product Analysis Project 
 
 ## It is a web application that shows from graphs the purchases that a particular customer has made
 
